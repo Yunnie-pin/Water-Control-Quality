@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "220494595781",
+    "project_id": "iot-water-quality-bbf4f",
+    "storage_bucket": "iot-water-quality-bbf4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220494595781:android:b685778a320010316812ac",
+        "android_client_info": {
+          "package_name": "com.example.water_quality_control"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220494595781-h5hdkoa20a6g0766vh139ca3e0h1g305.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnjUtAzhIki0TbkdUghzEsa8-oJaQI2Cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220494595781-h5hdkoa20a6g0766vh139ca3e0h1g305.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
