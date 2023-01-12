@@ -19,7 +19,7 @@ class HomeViews extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/search_resto');
+                Navigator.pushNamed(context, '/favorite');
               },
             ),
           ],
@@ -29,6 +29,12 @@ class HomeViews extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Center(
+              child: Image.asset('assets/amikom.png', width: 100, height: 100),
+            ),
+          ),
           Container(
             // height: Get.width / 2,
             margin: const EdgeInsets.symmetric(
@@ -79,7 +85,7 @@ class HomeViews extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Sensor Ph",
+                    Text("Sensor Kelembapan",
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.secondary)),
                     const SizedBox(height: 6),
@@ -179,8 +185,11 @@ class HomeViews extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton:
-          const FloatingActionButton(onPressed: null, child: Icon(Icons.add)),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/add');
+          },
+          child: const Icon(Icons.add)),
     );
   }
 }

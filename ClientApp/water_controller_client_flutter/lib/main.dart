@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:water_controller_client_flutter/view/add_page.dart';
 import 'package:water_controller_client_flutter/view/home_page.dart';
+import 'package:water_controller_client_flutter/view/saved_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home': (context) => const HomeViews(),
+        '/favorite': (context) => const SavedPages(),
+        '/add': (context) => const AddDataPages(),
       },
     );
   }
