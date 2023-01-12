@@ -1,53 +1,110 @@
 {
     "apispec":[
         {
-            "/alat":{
-                "method":"GET",
-                "payload":{
-                    "data":{
-                        "id":1
-                    }
-                },
-                "response":{
-                    "status":200,
-                    "data":{
-                        "sensor1":172.12,
-                        "sensor2":73.12,
-                        "hasil":"Hasilnya Mantap"
-                    }
-                }
-            }
-        },
-        {
-            "/alat":{
-                "method":"GET",
-                "response":{
-                    "status":200,
-                    "data":[
-                        {
-                            "id":1,
-                            "nama":"Tanah Pak kusir",
+            "/alat":[
+                {
+                    "method":"GET",
+                    "payload":{
+                        "data":{
+                            "id":1
+                        }
+                    },
+                    "response":{
+                        "status":200,
+                        "data":{
                             "sensor1":172.12,
                             "sensor2":73.12,
                             "hasil":"Hasilnya Mantap"
-                        },
-                        {
-                            "id":2,
-                            "nama":"Tanah Pak Candra",
-                            "sensor":172.12,
-                            "sensor2":73.12,
-                            "hasil":"Hasilnya tidak Mantap"
-                        },
-                        {
-                            "id":3,
-                            "nama":"Tanah Pak Indra",
-                            "sensor":172.12,
-                            "sensor2":73.12,
-                            "hasil":"Hasilnya Kurang Mantap"
                         }
-                    ]
+                    }
+                },
+                {
+                    "method":"POST",
+                    "payload":{
+                        "data":{
+                            "sensor1":172.12,
+                            "sensor2":73.12,
+                            "hasil":"Hasilnya Mantap"
+                        }
+                    },
+                    "response":{
+                        "status":200
+                    }
                 }
-            }
+            ]
+        },
+        {
+            "/client-flutter":[
+                {
+                    "method":"GET",
+                    "response":{
+                        "status":200,
+                        "data":[
+                            {
+                                "id":1,
+                                "nama":"Tanah Pak kusir",
+                                "sensor1":172.12,
+                                "sensor2":73.12,
+                                "hasil":"Hasilnya Mantap"
+                            },
+                            {
+                                "id":2,
+                                "nama":"Tanah Pak Candra",
+                                "sensor":172.12,
+                                "sensor2":73.12,
+                                "hasil":"Hasilnya tidak Mantap"
+                            },
+                            {
+                                "id":3,
+                                "nama":"Tanah Pak Indra",
+                                "sensor":172.12,
+                                "sensor2":73.12,
+                                "hasil":"Hasilnya Kurang Mantap"
+                            }
+                        ]
+                    }
+
+                },
+                {
+                    "method":"POST",
+                    "payload":{
+                        "data":{
+                            "nama":"Tanah Pak Indra",
+                            "sensor1":172.12,
+                            "sensor2":73.12,
+                            "hasil":"Hasilnya Mantap"
+                        }
+                    },
+                    "response":{
+                        "status":200
+                    }
+                },
+                {
+                    "method":"UPDATE",
+                    "payload":{
+                        "data":{
+                            "id":1
+                        }
+                    },
+                    "response":{
+                        "status":200,
+                        "data":{
+                            "nama":"Tanah Pak Indra"
+                        }
+                    }
+                },
+                {
+                    "method":"DELETE",
+                    "payload":{
+                        "data":{
+                            "id":1
+                        }
+                    },
+                    "response":{
+                        "status":200
+                    }
+                }
+            ]
         } 
     ]
 }
