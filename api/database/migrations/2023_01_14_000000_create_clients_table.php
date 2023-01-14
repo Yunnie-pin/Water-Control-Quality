@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->decimal('sensor_ph', places: 2);
             $table->decimal('sensor_suhu', places: 2);
-            $table->string('hasil');
+            $table->string('hasil')->nullable();
             $table->timestamps();
         });
     }

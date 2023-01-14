@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "4cf2c7b5-1bcd-4c7e-bc7a-89c0262a80d3",
+		"name": "Water Konsol",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24438129"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3300/api/client",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"client"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:3300/api/client",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3300",
+							"path": [
+								"api",
+								"client"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:3300"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 13:29:26 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 13:29:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.1.6"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"nama\": \"Violette Waters\",\n            \"sensor_ph\": \"100.51\",\n            \"sensor_suhu\": \"194.46\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"nama\": \"Melisa Abbott\",\n            \"sensor_ph\": \"142.93\",\n            \"sensor_suhu\": \"160.48\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 3,\n            \"nama\": \"Miss Petra Gutkowski\",\n            \"sensor_ph\": \"196.92\",\n            \"sensor_suhu\": \"163.54\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 4,\n            \"nama\": \"Roxane Franecki III\",\n            \"sensor_ph\": \"145.13\",\n            \"sensor_suhu\": \"171.10\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 5,\n            \"nama\": \"Prof. Cynthia Deckow III\",\n            \"sensor_ph\": \"163.04\",\n            \"sensor_suhu\": \"131.49\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 6,\n            \"nama\": \"Ms. Emely Walsh\",\n            \"sensor_ph\": \"156.39\",\n            \"sensor_suhu\": \"177.91\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 7,\n            \"nama\": \"Delfina Zemlak\",\n            \"sensor_ph\": \"123.12\",\n            \"sensor_suhu\": \"135.32\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 8,\n            \"nama\": \"Prof. Myrtle Huel I\",\n            \"sensor_ph\": \"104.34\",\n            \"sensor_suhu\": \"114.41\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 9,\n            \"nama\": \"Ms. Dorris Nikolaus\",\n            \"sensor_ph\": \"127.60\",\n            \"sensor_suhu\": \"109.12\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 10,\n            \"nama\": \"Ms. Zoey Deckow MD\",\n            \"sensor_ph\": \"184.03\",\n            \"sensor_suhu\": \"115.98\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 11,\n            \"nama\": \"Dr. Gina Nienow II\",\n            \"sensor_ph\": \"120.96\",\n            \"sensor_suhu\": \"104.14\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 12,\n            \"nama\": \"Prof. Zack Ward\",\n            \"sensor_ph\": \"150.67\",\n            \"sensor_suhu\": \"133.57\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 13,\n            \"nama\": \"Madison Casper\",\n            \"sensor_ph\": \"118.96\",\n            \"sensor_suhu\": \"132.95\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 14,\n            \"nama\": \"Prof. Eino Bode PhD\",\n            \"sensor_ph\": \"199.37\",\n            \"sensor_suhu\": \"159.75\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 15,\n            \"nama\": \"Eloy Jerde\",\n            \"sensor_ph\": \"119.51\",\n            \"sensor_suhu\": \"193.33\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 16,\n            \"nama\": \"Colton Nader\",\n            \"sensor_ph\": \"151.53\",\n            \"sensor_suhu\": \"126.25\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n        },\n        {\n            \"id\": 17,\n            \"nama\": \"Dr. Romaine Wilkinson V\",\n            \"sensor_ph\": \"132.81\",\n            \"sensor_suhu\": \"144.37\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:29.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:29.000000Z\"\n        },\n        {\n            \"id\": 18,\n            \"nama\": \"Josiane Dietrich\",\n            \"sensor_ph\": \"120.90\",\n            \"sensor_suhu\": \"148.63\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:29.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:29.000000Z\"\n        },\n        {\n            \"id\": 19,\n            \"nama\": \"Ms. Cassandre Mosciski\",\n            \"sensor_ph\": \"104.15\",\n            \"sensor_suhu\": \"181.04\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:29.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:29.000000Z\"\n        },\n        {\n            \"id\": 20,\n            \"nama\": \"Carleton Howell Sr.\",\n            \"sensor_ph\": \"168.00\",\n            \"sensor_suhu\": \"175.15\",\n            \"hasil\": \"mantap\",\n            \"created_at\": \"2023-01-14T13:24:29.000000Z\",\n            \"updated_at\": \"2023-01-14T13:24:29.000000Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3300/api/client/1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"client",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:3300/api/client/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3300",
+							"path": [
+								"api",
+								"client",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:3300"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 13:39:53 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 13:39:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.1.6"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"id\": 1,\n        \"nama\": \"Violette Waters\",\n        \"sensor_ph\": \"100.51\",\n        \"sensor_suhu\": \"194.46\",\n        \"hasil\": \"mantap\",\n        \"created_at\": \"2023-01-14T13:24:28.000000Z\",\n        \"updated_at\": \"2023-01-14T13:24:28.000000Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nama\": \"Arifin Curut\",\r\n    \"sensor_ph\": 666.00,\r\n    \"sensor_suhu\": 123.00,\r\n    \"hasil\":\"mengerikan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3300/api/client",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"client"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"Arifin Curut\",\r\n    \"sensor_ph\": 666.00,\r\n    \"sensor_suhu\": 123.00,\r\n    \"hasil\":\"mengerikan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:3300/api/client",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3300",
+							"path": [
+								"api",
+								"client"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:3300"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 13:43:33 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 13:43:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.1.6"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"nama\": \"Arifin Curut\",\n        \"sensor_ph\": 666,\n        \"sensor_suhu\": 123,\n        \"hasil\": \"mengerikan\",\n        \"updated_at\": \"2023-01-14T13:43:33.000000Z\",\n        \"created_at\": \"2023-01-14T13:43:33.000000Z\",\n        \"id\": 22\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nama\":\"Yuni Curu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3300/api/client/21",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"client",
+						"21"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\":\"Yuni Curu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:3300/api/client/21",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3300",
+							"path": [
+								"api",
+								"client",
+								"21"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:3300"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 13:42:31 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 13:42:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.1.6"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "57"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"id\": 21,\n        \"nama\": \"Yuni Curu\",\n        \"sensor_ph\": \"666.00\",\n        \"sensor_suhu\": \"123.00\",\n        \"hasil\": \"mengerikan\",\n        \"created_at\": \"2023-01-14T13:39:19.000000Z\",\n        \"updated_at\": \"2023-01-14T13:42:31.000000Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:3300/api/client/21",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3300",
+					"path": [
+						"api",
+						"client",
+						"21"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:3300/api/client/21",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3300",
+							"path": [
+								"api",
+								"client",
+								"21"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:3300"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 13:43:21 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Jan 2023 13:43:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.1.6"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"id\": 21,\n        \"nama\": \"Yuni Curu\",\n        \"sensor_ph\": \"666.00\",\n        \"sensor_suhu\": \"123.00\",\n        \"hasil\": \"mengerikan\",\n        \"created_at\": \"2023-01-14T13:39:19.000000Z\",\n        \"updated_at\": \"2023-01-14T13:42:31.000000Z\"\n    }\n}"
+				}
+			]
+		}
+	]
+}
