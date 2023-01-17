@@ -8,6 +8,7 @@ import (
 	"golang-rest-api/repository"
 	"golang-rest-api/service"
 	"net/http"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 
@@ -37,6 +38,7 @@ func main() {
 		Handler: router,
 	}
 
+	fmt.Println("server started at 0.0.0.0:3300 or 127.0.0.1:3300")
 	err := server.ListenAndServe()
 	helper.PanicIfError(err)
 }
