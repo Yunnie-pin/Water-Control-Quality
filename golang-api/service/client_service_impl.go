@@ -35,9 +35,7 @@ func (service *ClientServiceImpl) Create(ctx context.Context, request web.Client
 	defer helper.CommitOrRollback(tx)
 
 	client := domain.Client{
-		Nama:       request.Nama,
-		SensorPh:   request.SensorPh,
-		SensorSuhu: request.SensorSuhu,
+		Name: request.Name,
 	}
 
 	client = service.ClientRepository.Save(ctx, tx, client)
@@ -57,9 +55,7 @@ func (service *ClientServiceImpl) Update(ctx context.Context, request web.Client
 		panic(exception.NewNotFoundError(err.Error()))
 	}
 
-	client.Nama = request.Nama
-	client.SensorPh = request.SensorPh
-	client.SensorSuhu = request.SensorSuhu
+	client.Name = request.Name
 
 	client = service.ClientRepository.Save(ctx, tx, client)
 

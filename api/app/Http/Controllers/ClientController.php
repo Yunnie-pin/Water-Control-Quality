@@ -8,38 +8,46 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    public function all()
+    public function find_all()
     {
-        return new ClientResource(Client::all());
+        $data = Client::all();
+        foreach($data as $k => $d){
+            $r = Client::findOrFail($d->id);
+            $data[$k]->module = $r->module()->first();
+        }
+        return new ClientResource($data);
     }
 
-    public function add(Request $request)
+    public function create(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
-            'sensor_ph' => 'required',
-            'sensor_suhu' => 'required',
+            'name' => 'required|string',
+            'result' => 'string'
         ]);
         $data = Client::create([
-            'nama' => $request->nama,
-            'sensor_ph' => $request->sensor_ph,
-            'sensor_suhu' => $request->sensor_suhu,
-            'hasil' => $request->hasil ?: ''
+            'name' => $request->name,
+            'module_id' => $request->module_id,
+            'result' => $request->result
         ]);
+        if(isset($request->module_id)){
+            $r = Client::findOrFail($data->id);
+            $data->module = $r->module()->first();
+        }
         return new ClientResource($data);
     }
 
-    public function get($id)
+    public function find_by_id($id)
     {
         $data = Client::findOrFail($id);
+        $data->module = $data->module()->first();
         return new ClientResource($data);
     }
 
-    public function put(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $data = Client::findOrFail($id);
         $input = [];
-        foreach ($request->only(['nama', 'sensor_ph', 'sensor_suhu', 'hasil']) as $key => $req) {
+        foreach ($request->only(['name', 'module_id', 'result']) as $key => $req) {
             if (!empty($req)) {
                 $input[$key] = $req;
             }
@@ -52,6 +60,6 @@ class ClientController extends Controller
     {
         $data = Client::findOrFail($id);
         $data->delete();
-        return new ClientResource($data);
+        return response()->json(['data' => true]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +16,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-    'controller' => ClientController::class
+    'controller' => ClientController::class,
+    'prefix' => 'client'
 ], function () {
-    Route::get('/client', 'all');
-    Route::post('/client', 'add');
-    Route::get('/client/{id}', 'get');
-    Route::put('/client/{id}', 'put');
-    Route::delete('/client/{id}', 'delete');
+    Route::get('/', 'find_all');
+    Route::post('/', 'create');
+    Route::get('/{id}', 'find_by_id');
+    Route::put('/{id}', 'update');
+    Route::delete('/{id}', 'delete');
+});
+
+Route::group([
+    'controller' => ModuleController::class,
+    'prefix' => 'module'
+], function(){
+    Route::get('/','find_all');
+    Route::post('/','create');
+    Route::get('/{id}','find_by_id');
+    Route::put('/{id}','update');
+    Route::delete('/{id}','delete');
 });
