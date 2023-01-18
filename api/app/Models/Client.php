@@ -11,23 +11,11 @@ class Client extends Model
 
     protected $fillable = [
         'name',
-        'module',
+        'module_id',
         'result'
     ];
 
-    /**
-     * This will be called when fetching the element.
-     */
-    public function getModuleAttribute($value)
-    {
-        return $value;
-    }
-
-    /**
-     * This will be called when storing/updating the element.
-     */
-    public function setModuleAttribute($value)
-    {
-        $this->attributes['module'] = (string)$value;
+    public function module(){
+        return $this->hasOne(Module::class,'id','module_id');
     }
 }

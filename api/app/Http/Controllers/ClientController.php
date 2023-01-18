@@ -21,8 +21,8 @@ class ClientController extends Controller
         ]);
         $data = Client::create([
             'name' => $request->name,
-            'module' => json_encode($request->module) ?: '',
-            'result' => $request->result ?: ''
+            'module_id' => $request->module_id,
+            'result' => $request->result
         ]);
         return new ClientResource($data);
     }
@@ -37,7 +37,7 @@ class ClientController extends Controller
     {
         $data = Client::findOrFail($id);
         $input = [];
-        foreach ($request->only(['name', 'module', 'result']) as $key => $req) {
+        foreach ($request->only(['name', 'module_id', 'result']) as $key => $req) {
             if (!empty($req)) {
                 $input[$key] = $req;
             }

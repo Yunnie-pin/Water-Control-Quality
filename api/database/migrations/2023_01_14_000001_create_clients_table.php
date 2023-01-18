@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->json('module')->nullable();
+            $table->foreignId('module_id')->nullable()
+                ->constrained('modules')->nullOnDelete();
             $table->string('result')->nullable();
             $table->timestamps();
         });
