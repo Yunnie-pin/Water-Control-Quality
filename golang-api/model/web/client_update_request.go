@@ -1,7 +1,7 @@
 package web
 
 type ClientUpdateRequest struct {
-	Id     int    `validate:"required"`
-	Name   string `json:"name" validate:"required,alpha,min=2,max=32"`
-	Module string `json:"module" validate:"json"`
+	Id     int    `json:"id" validate:"required"`
+	Name   string `json:"name"`
+	Module string `json:"module" validate:"unique"`
 }
