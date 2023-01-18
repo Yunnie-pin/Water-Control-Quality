@@ -48,6 +48,6 @@ class ModuleController extends Controller
     {
         $data = Module::findOrFail($id);
         $data->delete();
-        return new ModuleResource($data);
+        return response()->json(['data' => true]);
     }
 }
