@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"golang-rest-api/app"
 	"golang-rest-api/controller"
 	"golang-rest-api/exception"
@@ -8,7 +9,6 @@ import (
 	"golang-rest-api/repository"
 	"golang-rest-api/service"
 	"net/http"
-	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 

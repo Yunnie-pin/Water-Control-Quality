@@ -7,10 +7,8 @@ import (
 
 func ToClientResponse(client domain.Client) web.ClientResponse {
 	return web.ClientResponse{
-		Id:         client.Id,
-		Nama:       client.Nama,
-		SensorPh:   client.SensorPh,
-		SensorSuhu: client.SensorSuhu,
+		Id:   client.Id,
+		Name: client.Name,
 	}
 }
 

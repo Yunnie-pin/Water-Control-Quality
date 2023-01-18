@@ -1,8 +1,7 @@
-package repository
+package redis
 
 import (
 	"context"
-	"database/sql"
 	"errors"
 	"golang-rest-api/helper"
 	"golang-rest-api/model/domain"
@@ -15,8 +14,8 @@ func NewClientRepository() ClientRepository {
 	return &ClientRepositoryImpl{}
 }
 
-func (repository *ClientRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, client domain.Client) domain.Client {
-	SQL := "INSERT INTO client(nama,sensor_ph,sensor_suhu) VALUES (?,?,?)"
+func (repository *ClientRepositoryImpl) Save(ctx context.Context, client domain.Client) domain.Client {
+	SQL := "HSET client:? name ? module ?"
 	result, err := tx.ExecContext(ctx, SQL, client.Name)
 	helper.PanicIfError(err)
 	id, err := result.LastInsertId()
@@ -25,20 +24,20 @@ func (repository *ClientRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, cl
 	return client
 }
 
-func (repository *ClientRepositoryImpl) Update(ctx context.Context, tx *sql.Tx, client domain.Client) domain.Client {
+func (repository *ClientRepositoryImpl) Update(ctx context.Context, client domain.Client) domain.Client {
 	SQL := "UPDATE client SET nama = ?, sensor_ph = ?,sensor_suhu = ? WHERE id = ?"
 	_, err := tx.ExecContext(ctx, SQL, client.Name, client.Id)
 	helper.PanicIfError(err)
 	return client
 }
 
-func (repository *ClientRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx, client domain.Client) {
+func (repository *ClientRepositoryImpl) Delete(ctx context.Context, client domain.Client) {
 	SQL := "DELETE FROM client where id = ?"
 	_, err := tx.ExecContext(ctx, SQL, client.Id)
 	helper.PanicIfError(err)
 }
 
-func (repository *ClientRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, clientId int) (domain.Client, error) {
+func (repository *ClientRepositoryImpl) FindById(ctx context.Context, clientId int) (domain.Client, error) {
 	SQL := "SELECT id, nama, sensor_ph, sensor_suhu FROM client WHERE id = ?"
 	rows, err := tx.QueryContext(ctx, SQL, clientId)
 	helper.PanicIfError(err)
@@ -54,7 +53,7 @@ func (repository *ClientRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx
 	}
 }
 
-func (repository *ClientRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.Client {
+func (repository *ClientRepositoryImpl) FindAll(ctx context.Context) []domain.Client {
 	SQL := "SELECT id, nama, sensor_ph, sensor_suhu FROM client"
 	rows, err := tx.QueryContext(ctx, SQL)
 	helper.PanicIfError(err)
