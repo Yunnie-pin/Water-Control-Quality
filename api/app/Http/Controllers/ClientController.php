@@ -50,6 +50,6 @@ class ClientController extends Controller
     {
         $data = Client::findOrFail($id);
         $data->delete();
-        return new ClientResource($data);
+        return response()->json(['data' => true]);
     }
 }
