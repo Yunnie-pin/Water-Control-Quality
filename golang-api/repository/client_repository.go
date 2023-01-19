@@ -16,7 +16,7 @@ func NewClientRepository() BaseClientRepository {
 }
 
 func (repository *ClientRepository) Save(ctx context.Context, tx *sql.Tx, client domain.Client) domain.Client {
-	SQL := "INSERT INTO client(name, module_id) VALUES (?,?)"
+	SQL := "INSERT INTO clients(name, module_id) VALUES (?,?)"
 	result, err := tx.ExecContext(ctx, SQL, client.Name, client.ModuleId)
 	helper.PanicIfError(err)
 	id, err := result.LastInsertId()
@@ -26,20 +26,20 @@ func (repository *ClientRepository) Save(ctx context.Context, tx *sql.Tx, client
 }
 
 func (repository *ClientRepository) Update(ctx context.Context, tx *sql.Tx, client domain.Client) domain.Client {
-	SQL := "UPDATE client SET name = ?, module_id = ? WHERE id = ?"
+	SQL := "UPDATE clients SET name = ?, module_id = ? WHERE id = ?"
 	_, err := tx.ExecContext(ctx, SQL, client.Name, client.ModuleId, client.Id)
 	helper.PanicIfError(err)
 	return client
 }
 
 func (repository *ClientRepository) Delete(ctx context.Context, tx *sql.Tx, client domain.Client) {
-	SQL := "DELETE FROM client where id = ?"
+	SQL := "DELETE FROM clients where id = ?"
 	_, err := tx.ExecContext(ctx, SQL, client.Id)
 	helper.PanicIfError(err)
 }
 
 func (repository *ClientRepository) FindById(ctx context.Context, tx *sql.Tx, clientId int) (domain.Client, error) {
-	SQL := "SELECT id, name, module_id FROM client WHERE id = ?"
+	SQL := "SELECT id, name, module_id FROM clients WHERE id = ?"
 	rows, err := tx.QueryContext(ctx, SQL, clientId)
 	helper.PanicIfError(err)
 	defer rows.Close()
@@ -55,7 +55,7 @@ func (repository *ClientRepository) FindById(ctx context.Context, tx *sql.Tx, cl
 }
 
 func (repository *ClientRepository) FindAll(ctx context.Context, tx *sql.Tx) []domain.Client {
-	SQL := "SELECT id, name, module_id FROM client"
+	SQL := "SELECT id, name, module_id FROM clients"
 	rows, err := tx.QueryContext(ctx, SQL)
 	helper.PanicIfError(err)
 	defer rows.Close()

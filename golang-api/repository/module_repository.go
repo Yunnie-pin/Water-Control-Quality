@@ -6,6 +6,7 @@ import (
 	"errors"
 	"golang-rest-api/helper"
 	"golang-rest-api/model/domain"
+	"time"
 )
 
 type ModuleRepository struct {
@@ -16,8 +17,8 @@ func NewModuleRepository() BaseModuleRepository {
 }
 
 func (repository *ModuleRepository) Save(ctx context.Context, tx *sql.Tx, module domain.Module) domain.Module {
-	SQL := "INSERT INTO module(name,value) VALUES (?,?)"
-	result, err := tx.ExecContext(ctx, SQL, module.Name, module.Value)
+	SQL := "INSERT INTO modules(name,value, created_at, updated_at) VALUES (?,?,?,?)"
+	result, err := tx.ExecContext(ctx, SQL, module.Name, module.Value, time.Now(), time.Now())
 	helper.PanicIfError(err)
 	id, err := result.LastInsertId()
 	helper.PanicIfError(err)
@@ -25,25 +26,25 @@ func (repository *ModuleRepository) Save(ctx context.Context, tx *sql.Tx, module
 	return module
 }
 func (repository *ModuleRepository) Update(ctx context.Context, tx *sql.Tx, module domain.Module) domain.Module {
-	SQL := "UPDATE module SET name = ?, value = ? WHERE id = ?"
-	_, err := tx.ExecContext(ctx, SQL, module.Name, module.Value, module.Id)
+	SQL := "UPDATE modules SET name = ?, value = ?, updated_at = ? WHERE id = ?"
+	_, err := tx.ExecContext(ctx, SQL, module.Name, module.Value, time.Now(), module.Id)
 	helper.PanicIfError(err)
 	return module
 }
 func (repository *ModuleRepository) Delete(ctx context.Context, tx *sql.Tx, module domain.Module) {
-	SQL := "DELETE FROM module where id = ?"
+	SQL := "DELETE FROM modules where id = ?"
 	_, err := tx.ExecContext(ctx, SQL, module.Id)
 	helper.PanicIfError(err)
 }
 func (repository *ModuleRepository) FindById(ctx context.Context, tx *sql.Tx, moduleId int) (domain.Module, error) {
-	SQL := "SELECT id, name, value FROM module WHERE id = ?"
+	SQL := "SELECT id, name, value, created_at, updated_at FROM modules WHERE id = ?"
 	rows, err := tx.QueryContext(ctx, SQL, moduleId)
 	helper.PanicIfError(err)
 	defer rows.Close()
 
 	module := domain.Module{}
 	if rows.Next() {
-		err = rows.Scan(&module.Id, &module.Name, &module.Value)
+		err = rows.Scan(&module.Id, &module.Name, &module.Value, &module.CreatedAt, &module.UpdatedAt)
 		helper.PanicIfError(err)
 		return module, nil
 	} else {
@@ -51,7 +52,7 @@ func (repository *ModuleRepository) FindById(ctx context.Context, tx *sql.Tx, mo
 	}
 }
 func (repository *ModuleRepository) FindAll(ctx context.Context, tx *sql.Tx) []domain.Module {
-	SQL := "SELECT id, name, value FROM module"
+	SQL := "SELECT id, name, value, created_at, updated_at FROM modules"
 	rows, err := tx.QueryContext(ctx, SQL)
 	helper.PanicIfError(err)
 	defer rows.Close()
@@ -59,7 +60,7 @@ func (repository *ModuleRepository) FindAll(ctx context.Context, tx *sql.Tx) []d
 	var modules []domain.Module
 	for rows.Next() {
 		module := domain.Module{}
-		rows.Scan(&module.Id, &module.Name, &module.Value)
+		rows.Scan(&module.Id, &module.Name, &module.Value, &module.CreatedAt, &module.UpdatedAt)
 		modules = append(modules, module)
 	}
 	return modules
