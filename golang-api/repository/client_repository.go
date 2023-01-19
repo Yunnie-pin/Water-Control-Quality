@@ -16,8 +16,8 @@ func NewClientRepository() BaseClientRepository {
 }
 
 func (repository *ClientRepository) Save(ctx context.Context, tx *sql.Tx, client domain.Client) domain.Client {
-	SQL := "INSERT INTO client(name,module) VALUES (?,?)"
-	result, err := tx.ExecContext(ctx, SQL, client.Name, client.Module)
+	SQL := "INSERT INTO client(name, module_id) VALUES (?,?)"
+	result, err := tx.ExecContext(ctx, SQL, client.Name, client.ModuleId)
 	helper.PanicIfError(err)
 	id, err := result.LastInsertId()
 	helper.PanicIfError(err)
@@ -26,8 +26,8 @@ func (repository *ClientRepository) Save(ctx context.Context, tx *sql.Tx, client
 }
 
 func (repository *ClientRepository) Update(ctx context.Context, tx *sql.Tx, client domain.Client) domain.Client {
-	SQL := "UPDATE client SET name = ?, module = ? WHERE id = ?"
-	_, err := tx.ExecContext(ctx, SQL, client.Name, client.Module, client.Id)
+	SQL := "UPDATE client SET name = ?, module_id = ? WHERE id = ?"
+	_, err := tx.ExecContext(ctx, SQL, client.Name, client.ModuleId, client.Id)
 	helper.PanicIfError(err)
 	return client
 }
@@ -39,14 +39,14 @@ func (repository *ClientRepository) Delete(ctx context.Context, tx *sql.Tx, clie
 }
 
 func (repository *ClientRepository) FindById(ctx context.Context, tx *sql.Tx, clientId int) (domain.Client, error) {
-	SQL := "SELECT id, name, module FROM client WHERE id = ?"
+	SQL := "SELECT id, name, module_id FROM client WHERE id = ?"
 	rows, err := tx.QueryContext(ctx, SQL, clientId)
 	helper.PanicIfError(err)
 	defer rows.Close()
 
 	client := domain.Client{}
 	if rows.Next() {
-		err = rows.Scan(&client.Id, &client.Name)
+		err = rows.Scan(&client.Id, &client.Name, &client.ModuleId)
 		helper.PanicIfError(err)
 		return client, nil
 	} else {
@@ -55,7 +55,7 @@ func (repository *ClientRepository) FindById(ctx context.Context, tx *sql.Tx, cl
 }
 
 func (repository *ClientRepository) FindAll(ctx context.Context, tx *sql.Tx) []domain.Client {
-	SQL := "SELECT id, nama, module FROM client"
+	SQL := "SELECT id, name, module_id FROM client"
 	rows, err := tx.QueryContext(ctx, SQL)
 	helper.PanicIfError(err)
 	defer rows.Close()
@@ -63,7 +63,7 @@ func (repository *ClientRepository) FindAll(ctx context.Context, tx *sql.Tx) []d
 	var clients []domain.Client
 	for rows.Next() {
 		client := domain.Client{}
-		rows.Scan(&client.Id, &client.Name)
+		rows.Scan(&client.Id, &client.Name, &client.ModuleId)
 		clients = append(clients, client)
 	}
 	return clients

@@ -1,7 +1,7 @@
 package domain
 
 type Client struct {
-	Id     int
-	Name   string
-	Module []int
+	Id       int
+	Name     string
+	ModuleId int
 }
