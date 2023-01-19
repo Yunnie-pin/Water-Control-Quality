@@ -11,6 +11,10 @@ import (
 type ModuleRepository struct {
 }
 
+func NewModuleRepository() BaseModuleRepository {
+	return &ModuleRepository{}
+}
+
 func (repository *ModuleRepository) Save(ctx context.Context, tx *sql.Tx, module domain.Module) domain.Module {
 	SQL := "INSERT INTO module(name,value) VALUES (?,?)"
 	result, err := tx.ExecContext(ctx, SQL, module.Name, module.Value)

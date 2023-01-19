@@ -18,13 +18,13 @@ type ModuleService struct {
 	Validate         *validator.Validate
 }
 
-// func NewModuleService(ModuleRepository repository.BaseModuleRepository, DB *sql.DB, validate *validator.Validate) BaseModuleService {
-// 	return &ModuleService{
-// 		ModuleRepository: ModuleRepository,
-// 		DB:               DB,
-// 		Validate:         validate,
-// 	}
-// }
+func NewModuleService(ModuleRepository repository.BaseModuleRepository, DB *sql.DB, validate *validator.Validate) BaseModuleService {
+	return &ModuleService{
+		ModuleRepository: ModuleRepository,
+		DB:               DB,
+		Validate:         validate,
+	}
+}
 
 func (service *ModuleService) Create(ctx context.Context, request web.ModuleCreateRequest) web.ModuleResponse {
 	err := service.Validate.Struct(request)

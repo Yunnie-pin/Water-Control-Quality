@@ -19,9 +19,14 @@ import (
 func main() {
 	db := app.NewDB()
 	validate := validator.New()
+
 	clientRepository := repository.NewClientRepository()
 	clientService := service.NewClientService(clientRepository, db, validate)
 	clientController := controller.NewClientController(clientService)
+
+	moduleRepository := repository.NewModuleRepository()
+	moduleService := service.NewModuleService(moduleRepository, db, validate)
+	moduleController := controller.NewModuleController(moduleService)
 
 	router := httprouter.New()
 
@@ -30,6 +35,12 @@ func main() {
 	router.POST("/api/client", clientController.Create)
 	router.PUT("/api/client", clientController.Update)
 	router.DELETE("/api/client/:clientId", clientController.Delete)
+
+	router.GET("/api/module", moduleController.FindAll)
+	router.GET("/api/module/:moduleId", moduleController.FindById)
+	router.POST("/api/module", moduleController.Create)
+	router.PUT("/api/module", moduleController.Update)
+	router.DELETE("/api/module/:moduleId", moduleController.Delete)
 
 	router.PanicHandler = exception.ErrorHandler
 
