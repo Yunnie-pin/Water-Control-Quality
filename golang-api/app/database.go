@@ -27,9 +27,9 @@ func NewDB() *sql.DB {
 
 	var db *sql.DB
 	if len(password) > 0 {
-		db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, host, port, database))
+		db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", username, password, host, port, database))
 	} else {
-		db, err = sql.Open("mysql", fmt.Sprintf("%s@tcp(%s:%s)/%s", username, host, port, database))
+		db, err = sql.Open("mysql", fmt.Sprintf("%s@tcp(%s:%s)/%s?parseTime=true", username, host, port, database))
 	}
 
 	helper.PanicIfError(err)
