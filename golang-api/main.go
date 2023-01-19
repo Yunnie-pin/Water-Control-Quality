@@ -39,7 +39,7 @@ func main() {
 	router.GET("/api/module", moduleController.FindAll)
 	router.GET("/api/module/:moduleId", moduleController.FindById)
 	router.POST("/api/module", moduleController.Create)
-	router.PUT("/api/module", moduleController.Update)
+	router.PUT("/api/module/:moduleId", moduleController.Update)
 	router.DELETE("/api/module/:moduleId", moduleController.Delete)
 
 	router.PanicHandler = exception.ErrorHandler

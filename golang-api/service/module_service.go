@@ -58,7 +58,7 @@ func (service *ModuleService) Update(ctx context.Context, request web.ModuleUpda
 	module.Name = request.Name
 	module.Value = request.Value
 
-	module = service.ModuleRepository.Save(ctx, tx, module)
+	module = service.ModuleRepository.Update(ctx, tx, module)
 
 	return helper.ToModuleResponse(module)
 }
