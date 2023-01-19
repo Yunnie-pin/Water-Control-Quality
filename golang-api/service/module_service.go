@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"database/sql"
+	"golang-rest-api/exception"
 	"golang-rest-api/helper"
 	"golang-rest-api/model/domain"
 	"golang-rest-api/model/web"
@@ -43,12 +44,28 @@ func (service *ModuleService) Create(ctx context.Context, request web.ModuleCrea
 	return helper.ToModuleResponse(module)
 }
 func (service *ModuleService) Update(ctx context.Context, request web.ModuleUpdateRequest) web.ModuleResponse {
+	err := service.Validate.Struct(request)
+	helper.PanicIfError(err)
+
+	tx, err := service.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	module, err := service.ModuleRepository.FindById(ctx, tx, request.Id)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
+	module.Name = request.Name
+	module.Value = request.Value
+
+	module = service.ModuleRepository.Save(ctx, tx, module)
+
+	return helper.ToModuleResponse(module)
+}
+func (service *ModuleService) Delete(ctx context.Context, moduleId int) {
 	panic("err")
 }
-func (service *ModuleService) Delete(ctx context.Context, clientId int) {
-	panic("err")
-}
-func (service *ModuleService) FindById(ctx context.Context, clientId int) web.ModuleResponse {
+func (service *ModuleService) FindById(ctx context.Context, moduleId int) web.ModuleResponse {
 	panic("err")
 }
 func (service *ModuleService) FindAll(ctx context.Context) []web.ModuleResponse {

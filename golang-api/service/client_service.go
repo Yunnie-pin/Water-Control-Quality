@@ -72,7 +72,6 @@ func (service *ClientService) Delete(ctx context.Context, clientId int) {
 	}
 
 	service.ClientRepository.Delete(ctx, tx, client)
-
 }
 
 func (service *ClientService) FindById(ctx context.Context, clientId int) web.ClientResponse {

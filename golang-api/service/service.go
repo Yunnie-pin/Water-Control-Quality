@@ -16,7 +16,7 @@ type BaseClientService interface {
 type BaseModuleService interface {
 	Create(ctx context.Context, request web.ModuleCreateRequest) web.ModuleResponse
 	Update(ctx context.Context, request web.ModuleUpdateRequest) web.ModuleResponse
-	Delete(ctx context.Context, clientId int)
-	FindById(ctx context.Context, clientId int) web.ModuleResponse
+	Delete(ctx context.Context, moduleId int)
+	FindById(ctx context.Context, moduleId int) web.ModuleResponse
 	FindAll(ctx context.Context) []web.ModuleResponse
 }
