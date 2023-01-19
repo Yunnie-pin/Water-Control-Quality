@@ -75,8 +75,23 @@ func (service *ModuleService) Delete(ctx context.Context, moduleId int) {
 	service.ModuleRepository.Delete(ctx, tx, module)
 }
 func (service *ModuleService) FindById(ctx context.Context, moduleId int) web.ModuleResponse {
-	panic("err")
+	tx, err := service.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	module, err := service.ModuleRepository.FindById(ctx, tx, moduleId)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
+
+	return helper.ToModuleResponse(module)
 }
 func (service *ModuleService) FindAll(ctx context.Context) []web.ModuleResponse {
-	panic("err")
+	tx, err := service.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	modules := service.ModuleRepository.FindAll(ctx, tx)
+	helper.PanicIfError(err)
+	return helper.ToModuleResponses(modules)
 }
