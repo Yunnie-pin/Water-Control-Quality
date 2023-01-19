@@ -1,6 +1,6 @@
 package web
 
 type ClientCreateRequest struct {
-	Name   string `json:"name" validate:"required,min=2,max=32"`
-	Module string `json:"module" validate:"unique"`
+	Name     string `json:"name" validate:"required,min=2,max=32"`
+	ModuleId int    `json:"module" validate:"numeric"`
 }

@@ -19,3 +19,19 @@ func ToClientResponses(clients []domain.Client) []web.ClientResponse {
 	}
 	return ClientResponses
 }
+
+func ToModuleResponse(module domain.Module) web.ModuleResponse {
+	return web.ModuleResponse{
+		Id:    module.Id,
+		Name:  module.Name,
+		Value: module.Value,
+	}
+}
+
+func ToModuleResponses(modules []domain.Module) []web.ModuleResponse {
+	var ModuleResponses []web.ModuleResponse
+	for _, module := range modules {
+		ModuleResponses = append(ModuleResponses, ToModuleResponse(module))
+	}
+	return ModuleResponses
+}
