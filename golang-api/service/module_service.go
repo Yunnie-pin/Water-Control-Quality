@@ -63,7 +63,16 @@ func (service *ModuleService) Update(ctx context.Context, request web.ModuleUpda
 	return helper.ToModuleResponse(module)
 }
 func (service *ModuleService) Delete(ctx context.Context, moduleId int) {
-	panic("err")
+	tx, err := service.DB.Begin()
+	helper.PanicIfError(err)
+	defer helper.CommitOrRollback(tx)
+
+	module, err := service.ModuleRepository.FindById(ctx, tx, moduleId)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
+
+	service.ModuleRepository.Delete(ctx, tx, module)
 }
 func (service *ModuleService) FindById(ctx context.Context, moduleId int) web.ModuleResponse {
 	panic("err")
