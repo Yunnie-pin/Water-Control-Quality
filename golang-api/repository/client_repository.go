@@ -16,8 +16,16 @@ func NewClientRepository() BaseClientRepository {
 }
 
 func (repository *ClientRepository) Save(ctx context.Context, tx *sql.Tx, client domain.Client) domain.Client {
-	SQL := "INSERT INTO clients(name, module_id) VALUES (?,?)"
-	result, err := tx.ExecContext(ctx, SQL, client.Name, client.ModuleId)
+	SQL := `SET @name := '?';
+	SET @module_id := ?;
+	SET @result := '?';
+	INSERT INTO clients(name,module_id,result,created_at,updated_at) 
+	VALUES 
+	(@name,
+	 IF(@module_id <=> 0,NULL,@module_id),
+	 IF(@result <=> '',NULL,@result)
+	 ,NOW(),NOW());`
+	result, err := tx.ExecContext(ctx, SQL, client.Name, client.ModuleId, client.Result)
 	helper.PanicIfError(err)
 	id, err := result.LastInsertId()
 	helper.PanicIfError(err)
@@ -26,8 +34,16 @@ func (repository *ClientRepository) Save(ctx context.Context, tx *sql.Tx, client
 }
 
 func (repository *ClientRepository) Update(ctx context.Context, tx *sql.Tx, client domain.Client) domain.Client {
-	SQL := "UPDATE clients SET name = ?, module_id = ? WHERE id = ?"
-	_, err := tx.ExecContext(ctx, SQL, client.Name, client.ModuleId, client.Id)
+	SQL := `SET @name := '?';
+	SET @module_id := ?;
+	SET @result := '?';
+	UPDATE clients 
+	SET name = IF(@name <> '',@name, name),
+	module_id = IF(@module_id <=> 0,NULL, @module_id),
+	result = IF(@result <> '', @result, result), 
+	updated_at = NOW() 
+	WHERE id = ?;`
+	_, err := tx.ExecContext(ctx, SQL, client.Name, client.ModuleId, client.Result, client.Id)
 	helper.PanicIfError(err)
 	return client
 }
@@ -39,14 +55,14 @@ func (repository *ClientRepository) Delete(ctx context.Context, tx *sql.Tx, clie
 }
 
 func (repository *ClientRepository) FindById(ctx context.Context, tx *sql.Tx, clientId int) (domain.Client, error) {
-	SQL := "SELECT id, name, module_id FROM clients WHERE id = ?"
+	SQL := "SELECT id, name, module_id, result, created_at, updated_at FROM clients WHERE id = ?"
 	rows, err := tx.QueryContext(ctx, SQL, clientId)
 	helper.PanicIfError(err)
 	defer rows.Close()
 
 	client := domain.Client{}
 	if rows.Next() {
-		err = rows.Scan(&client.Id, &client.Name, &client.ModuleId)
+		err = rows.Scan(&client.Id, &client.Name, &client.ModuleId, &client.Result, &client.CreatedAt, &client.UpdatedAt)
 		helper.PanicIfError(err)
 		return client, nil
 	} else {
@@ -55,7 +71,7 @@ func (repository *ClientRepository) FindById(ctx context.Context, tx *sql.Tx, cl
 }
 
 func (repository *ClientRepository) FindAll(ctx context.Context, tx *sql.Tx) []domain.Client {
-	SQL := "SELECT id, name, module_id FROM clients"
+	SQL := "SELECT id, name, module_id, result, created_at, updated_at FROM clients"
 	rows, err := tx.QueryContext(ctx, SQL)
 	helper.PanicIfError(err)
 	defer rows.Close()
@@ -63,7 +79,7 @@ func (repository *ClientRepository) FindAll(ctx context.Context, tx *sql.Tx) []d
 	var clients []domain.Client
 	for rows.Next() {
 		client := domain.Client{}
-		rows.Scan(&client.Id, &client.Name, &client.ModuleId)
+		rows.Scan(&client.Id, &client.Name, &client.ModuleId, &client.Result, &client.CreatedAt, &client.UpdatedAt)
 		clients = append(clients, client)
 	}
 	return clients

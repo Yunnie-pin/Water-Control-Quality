@@ -35,7 +35,9 @@ func (service *ClientService) Create(ctx context.Context, request web.ClientCrea
 	defer helper.CommitOrRollback(tx)
 
 	client := domain.Client{
-		Name: request.Name,
+		Name:     request.Name,
+		ModuleId: request.ModuleId,
+		Result:   request.Result,
 	}
 
 	client = service.ClientRepository.Save(ctx, tx, client)
@@ -56,6 +58,8 @@ func (service *ClientService) Update(ctx context.Context, request web.ClientUpda
 	}
 
 	client.Name = request.Name
+	client.ModuleId = request.ModuleId
+	client.Result = request.Result
 
 	client = service.ClientRepository.Save(ctx, tx, client)
 

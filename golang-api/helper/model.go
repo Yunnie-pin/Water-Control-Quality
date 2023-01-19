@@ -7,8 +7,12 @@ import (
 
 func ToClientResponse(client domain.Client) web.ClientResponse {
 	return web.ClientResponse{
-		Id:   client.Id,
-		Name: client.Name,
+		Id:        client.Id,
+		Name:      client.Name,
+		Result:    client.Result,
+		ModuleId:  client.ModuleId,
+		CreatedAt: client.CreatedAt.Format("2006-01-02 15:04:05"),
+		UpdatedAt: client.UpdatedAt.Format("2006-01-02 15:04:05"),
 	}
 }
 
