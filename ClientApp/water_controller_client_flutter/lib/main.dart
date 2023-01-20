@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:water_controller_client_flutter/api/api_client.dart';
 import 'package:water_controller_client_flutter/provider/list_data_client_provider.dart';
+import 'package:water_controller_client_flutter/provider/show_data_module_provider.dart';
 import 'package:water_controller_client_flutter/view/add_page.dart';
 import 'package:water_controller_client_flutter/view/home_page.dart';
 import 'package:water_controller_client_flutter/view/saved_page.dart';
@@ -17,8 +18,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme =
         ThemeData(scaffoldBackgroundColor: const Color(0xFFfef1ea));
-    return ChangeNotifierProvider(
-      create: (context) => ListDataClientProvider(apiService: ApiService()),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: (context) =>
+                ListDataClientProvider(apiService: ApiService())),
+        ChangeNotifierProvider(
+            create: (context) =>
+                ShowDataModuleProvider(apiService: ApiService()))
+      ],
       child: MaterialApp(
         theme: theme.copyWith(
           colorScheme: theme.colorScheme.copyWith(
