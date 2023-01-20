@@ -11,24 +11,16 @@ String listDataClientToJson(ListDataClient data) => json.encode(data.toJson());
 
 class ListDataClient {
   ListDataClient({
-    required this.code,
-    required this.status,
     required this.data,
   });
 
-  final int code;
-  final String status;
   final List<Datum> data;
 
   factory ListDataClient.fromJson(Map<String, dynamic> json) => ListDataClient(
-        code: json["code"],
-        status: json["status"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "code": code,
-        "status": status,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
@@ -36,27 +28,71 @@ class ListDataClient {
 class Datum {
   Datum({
     required this.id,
-    required this.nama,
-    required this.sensorPh,
-    required this.sensorSuhu,
+    required this.name,
+    required this.moduleId,
+    required this.result,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.module,
   });
 
   final int id;
-  final String nama;
-  final double sensorPh;
-  final int sensorSuhu;
+  final String name;
+  final int moduleId;
+  final String result;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final Module module;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
-        nama: json["nama"],
-        sensorPh: json["sensorPh"]?.toDouble(),
-        sensorSuhu: json["sensorSuhu"],
+        name: json["name"],
+        moduleId: json["module_id"],
+        result: json["result"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        module: Module.fromJson(json["module"]),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "nama": nama,
-        "sensorPh": sensorPh,
-        "sensorSuhu": sensorSuhu,
+        "name": name,
+        "module_id": moduleId,
+        "result": result,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "module": module.toJson(),
+      };
+}
+
+class Module {
+  Module({
+    required this.id,
+    required this.name,
+    required this.value,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  final int id;
+  final String name;
+  final String value;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  factory Module.fromJson(Map<String, dynamic> json) => Module(
+        id: json["id"],
+        name: json["name"],
+        value: json["value"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "value": value,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
       };
 }

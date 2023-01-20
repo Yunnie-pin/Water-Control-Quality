@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:water_controller_client_flutter/models/list_data_client.dart';
 
 class ApiService {
-  static const String _baseUrl = 'http://192.168.1.2:3300/api/client';
+  static const String _baseUrl = 'http://192.168.1.8/water-controller/api';
   static const String _getListDataClient = '/client';
 
   Future<ListDataClient> listDataClient(http.Client client) async {
@@ -16,5 +16,4 @@ class ApiService {
       throw Exception('Gagal untuk memuat list Restaurant');
     }
   }
-  
 }

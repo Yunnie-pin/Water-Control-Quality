@@ -51,7 +51,7 @@ class SavedPages extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ExpansionTile(
                     backgroundColor: Colors.white,
-                    title: Text(data.nama),
+                    title: Text(data.name),
                     children: <Widget>[
                       Row(
                         children: <Widget>[
@@ -77,42 +77,7 @@ class SavedPages extends StatelessWidget {
                                     ),
                                     Center(
                                       child: Text(
-                                        data.sensorPh.toString(),
-                                        textAlign: TextAlign.justify,
-                                        overflow: TextOverflow.fade,
-                                        style: const TextStyle(
-                                          fontSize: 12.0,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  children: <Widget>[
-                                    const Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                      child: Center(
-                                        child: Text(
-                                          "Sensor2",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 14.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Center(
-                                      child: Text(
-                                        data.sensorSuhu.toString(),
+                                        data.module.value,
                                         textAlign: TextAlign.justify,
                                         overflow: TextOverflow.fade,
                                         style: const TextStyle(
@@ -133,8 +98,8 @@ class SavedPages extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Column(
-                              children: const <Widget>[
-                                Padding(
+                              children: <Widget>[
+                                const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                                   child: Center(
                                     child: Text(
@@ -149,10 +114,10 @@ class SavedPages extends StatelessWidget {
                                 ),
                                 Center(
                                   child: Text(
-                                    'ini Hasil',
+                                    data.module.value,
                                     textAlign: TextAlign.justify,
                                     overflow: TextOverflow.fade,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 12.0,
                                     ),
                                   ),
