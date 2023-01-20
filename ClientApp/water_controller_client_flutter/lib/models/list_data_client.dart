@@ -1,6 +1,7 @@
 // To parse this JSON data, do
 //
 //     final listDataClient = listDataClientFromJson(jsonString);
+
 import 'dart:convert';
 
 ListDataClient listDataClientFromJson(String str) =>
@@ -17,23 +18,23 @@ class ListDataClient {
 
   final int code;
   final String status;
-  final Data data;
+  final List<Datum> data;
 
   factory ListDataClient.fromJson(Map<String, dynamic> json) => ListDataClient(
         code: json["code"],
         status: json["status"],
-        data: Data.fromJson(json["data"]),
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "code": code,
         "status": status,
-        "data": data.toJson(),
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
 
-class Data {
-  Data({
+class Datum {
+  Datum({
     required this.id,
     required this.nama,
     required this.sensorPh,
@@ -45,7 +46,7 @@ class Data {
   final double sensorPh;
   final int sensorSuhu;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         nama: json["nama"],
         sensorPh: json["sensorPh"]?.toDouble(),
