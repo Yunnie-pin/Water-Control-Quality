@@ -25,17 +25,20 @@ func (repository *ModuleRepository) Save(ctx context.Context, tx *sql.Tx, module
 	module.Id = int(id)
 	return module
 }
+
 func (repository *ModuleRepository) Update(ctx context.Context, tx *sql.Tx, module domain.Module) domain.Module {
 	SQL := "UPDATE modules SET name = ?, value = ?, updated_at = ? WHERE id = ?"
 	_, err := tx.ExecContext(ctx, SQL, module.Name, module.Value, time.Now(), module.Id)
 	helper.PanicIfError(err)
 	return module
 }
+
 func (repository *ModuleRepository) Delete(ctx context.Context, tx *sql.Tx, module domain.Module) {
 	SQL := "DELETE FROM modules where id = ?"
 	_, err := tx.ExecContext(ctx, SQL, module.Id)
 	helper.PanicIfError(err)
 }
+
 func (repository *ModuleRepository) FindById(ctx context.Context, tx *sql.Tx, moduleId int) (domain.Module, error) {
 	SQL := "SELECT id, name, value, created_at, updated_at FROM modules WHERE id = ?"
 	rows, err := tx.QueryContext(ctx, SQL, moduleId)
@@ -51,6 +54,7 @@ func (repository *ModuleRepository) FindById(ctx context.Context, tx *sql.Tx, mo
 		return module, errors.New("client not found")
 	}
 }
+
 func (repository *ModuleRepository) FindAll(ctx context.Context, tx *sql.Tx) []domain.Module {
 	SQL := "SELECT id, name, value, created_at, updated_at FROM modules"
 	rows, err := tx.QueryContext(ctx, SQL)
