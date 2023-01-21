@@ -44,6 +44,17 @@ class _AddDataPagesState extends State<AddDataPages> {
                     },
                   ),
                 ),
+                const Text(
+                  "Sensor Kelembapan : 120",
+                ),
+                const Text(
+                  "Hasil : Mantap",
+                ),
+
+                const SizedBox(height: 20),
+                const Text(
+                  "#Data yang dimasukkan adalah data yang paling terbaru saat ini",
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: ElevatedButton(

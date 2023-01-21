@@ -153,7 +153,9 @@ class HomeViews extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Text(state.list.data[(state.list.data.length) - 1].value,
+                child: Text(
+                    state.conditionalFunction(
+                        state.list.data[(state.list.data.length) - 1].value),
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.w700,

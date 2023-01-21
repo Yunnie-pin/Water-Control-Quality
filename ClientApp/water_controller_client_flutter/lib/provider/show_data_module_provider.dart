@@ -28,6 +28,19 @@ class ShowDataModuleProvider extends ChangeNotifier {
     });
   }
 
+  conditionalFunction(String nilai) {
+    double number = double.parse(nilai);
+    if (number > 0 && number < 300) {
+      return "Tanah Kering";
+    } else if (number > 301 && number < 600) {
+      return "Tanah Lembab";
+    } else if (number > 601) {
+      return "Tanah Basah";
+    } else {
+      return "Hasil tidak diketahui";
+    }
+  }
+
   Future _fetchDataModule() async {
     try {
       _state = ResultState.loading;

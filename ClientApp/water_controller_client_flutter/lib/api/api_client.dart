@@ -44,11 +44,11 @@ class ApiService {
   }
 
   Future<AddClientResponse> addDataClient(
-      http.Client client, name, moduleId, result) async {
+      http.Client client, name, moduleId, results) async {
     final response = await client.post(
       Uri.parse("$_baseUrl$_getListDataClient"),
       headers: {"Content-Type": "application/x-www-form-urlencoded"},
-      body: {"name": name, "module_id": moduleId, "result": result},
+      body: {"name": name, "module_id": moduleId, "result": results},
     );
     if (response.statusCode == 200) {
       return AddClientResponse.fromJson(json.decode(response.body));
