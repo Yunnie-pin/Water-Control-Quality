@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:water_controller_client_flutter/models/client_response.dart';
+import 'package:water_controller_client_flutter/models/add_client_response.dart';
 import 'package:water_controller_client_flutter/models/default_response.dart';
 import 'package:water_controller_client_flutter/models/list_data_client.dart';
 import 'package:water_controller_client_flutter/models/list_data_module.dart';
@@ -43,8 +43,9 @@ class ApiService {
     }
   }
 
-  Future<AddClientResponse> addDataClient(name, moduleId, result) async {
-    final response = await http.post(
+  Future<AddClientResponse> addDataClient(
+      http.Client client, name, moduleId, result) async {
+    final response = await client.post(
       Uri.parse("$_baseUrl$_getListDataClient"),
       headers: {"Content-Type": "application/x-www-form-urlencoded"},
       body: {"name": name, "module_id": moduleId, "result": result},
@@ -55,6 +56,4 @@ class ApiService {
       throw Exception('Gagal untuk menambahkan data');
     }
   }
-
-  
 }
