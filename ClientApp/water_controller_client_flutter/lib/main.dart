@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:water_controller_client_flutter/api/api_client.dart';
+import 'package:water_controller_client_flutter/provider/delete_client_provider.dart';
 import 'package:water_controller_client_flutter/provider/list_data_client_provider.dart';
 import 'package:water_controller_client_flutter/provider/show_data_module_provider.dart';
 import 'package:water_controller_client_flutter/view/add_page.dart';
@@ -25,7 +26,9 @@ class MyApp extends StatelessWidget {
                 ListDataClientProvider(apiService: ApiService())),
         ChangeNotifierProvider(
             create: (context) =>
-                ShowDataModuleProvider(apiService: ApiService()))
+                ShowDataModuleProvider(apiService: ApiService())),
+        ChangeNotifierProvider(
+            create: (context) => DeleteClientProvider(apiService: ApiService()))
       ],
       child: MaterialApp(
         theme: theme.copyWith(

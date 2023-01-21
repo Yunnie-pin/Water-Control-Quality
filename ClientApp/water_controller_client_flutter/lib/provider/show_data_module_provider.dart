@@ -10,7 +10,7 @@ class ShowDataModuleProvider extends ChangeNotifier {
   final ApiService apiService;
 
   ShowDataModuleProvider({required this.apiService}) {
-    _fetchDataModule();
+    getData();
   }
 
   late ListDataModule _listDataModule;
@@ -20,6 +20,13 @@ class ShowDataModuleProvider extends ChangeNotifier {
   ListDataModule get list => _listDataModule;
   ResultState get state => _state;
   String get message => _message;
+
+  getData() async {
+    await _fetchDataModule();
+    Timer.periodic(const Duration(seconds: 5), (t) {
+      _fetchDataModule();
+    });
+  }
 
   Future _fetchDataModule() async {
     try {
