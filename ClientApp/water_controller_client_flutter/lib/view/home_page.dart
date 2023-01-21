@@ -109,43 +109,6 @@ class HomeViews extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    // height: Get.width / 2,
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 0,
-                    ),
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.15),
-                          spreadRadius: 2,
-                          blurRadius: 2,
-                          offset: const Offset(0, 1),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Sensor Suhu",
-                            style: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.secondary)),
-                        const SizedBox(height: 6),
-                        Text("78.00",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 28.0,
-                                color:
-                                    Theme.of(context).colorScheme.secondary)),
-                      ],
-                    ),
-                  ),
                 ],
               ),
               const SizedBox(height: 20),
@@ -190,7 +153,7 @@ class HomeViews extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Text("Air Yang baik untuk Ikan",
+                child: Text(state.list.data[(state.list.data.length) - 1].value,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.w700,

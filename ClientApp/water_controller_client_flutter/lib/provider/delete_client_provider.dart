@@ -19,13 +19,13 @@ class DeleteClientProvider extends ChangeNotifier {
 
   ResultState get state => _state;
 
-  Future<dynamic> submitReview(String id) async {
+  Future<dynamic> submitDeleteClient(String id) async {
     try {
       _state = ResultState.loading;
       notifyListeners();
       final clientResponse =
           await apiService.deleteDataClient(http.Client(), id);
-      if (clientResponse.data == false) {
+      if (!(clientResponse.data)) {
         _state = ResultState.error;
         notifyListeners();
         return _message = 'Failed to delete data';

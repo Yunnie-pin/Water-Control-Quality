@@ -49,4 +49,33 @@ class ListDataClientProvider extends ChangeNotifier {
       return _message = "Bad response format";
     }
   }
+
+  Future refreshAllDataClient() async {
+    try {
+      _state = ResultState.loading;
+      notifyListeners();
+      final listData = await apiService.listDataClient(http.Client());
+      if (listData.data.isEmpty) {
+        _state = ResultState.noData;
+        notifyListeners();
+        return _message = 'Tidak ada data';
+      } else {
+        _state = ResultState.hasData;
+        notifyListeners();
+        return _listDataClient = listData;
+      }
+    } on SocketException {
+      _state = ResultState.error;
+      notifyListeners();
+      return _message = 'No Internet Connection';
+    } on HttpException {
+      _state = ResultState.error;
+      notifyListeners();
+      return _message = "Couldn't find the post";
+    } on FormatException {
+      _state = ResultState.error;
+      notifyListeners();
+      return _message = "Bad response format";
+    }
+  }
 }
