@@ -20,8 +20,6 @@ Install Hijrah Journey
   flutter build apk --release
 ```
 
-![Logo](https://w7.pngwing.com/pngs/447/956/png-transparent-university-of-amikom-yogyakarta-yogyakarta-state-university-logo-id-miscellaneous-purple-text.png)
-
 
 ## Tech
 
