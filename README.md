@@ -32,8 +32,6 @@ Install Hijrah Journey
 
 
 
-## API Reference
-
 
 
 | Dashboard | Add-page | List Page |
