@@ -42,7 +42,10 @@ class MyApp extends StatelessWidget {
         routes: {
           '/home': (context) => const HomeViews(),
           '/favorite': (context) => const SavedPages(),
-          '/add': (context) => const AddDataPages(),
+          '/add': (context) => AddDataPages(
+                dataSensor:
+                    ModalRoute.of(context)?.settings.arguments as String,
+              ),
         },
       ),
     );

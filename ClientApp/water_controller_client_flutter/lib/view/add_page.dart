@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AddDataPages extends StatefulWidget {
-  const AddDataPages({super.key});
+  final String dataSensor;
+
+  const AddDataPages({super.key, required this.dataSensor});
 
   @override
   State<AddDataPages> createState() => _AddDataPagesState();

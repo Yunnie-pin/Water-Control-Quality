@@ -7,7 +7,7 @@ import 'package:water_controller_client_flutter/models/list_data_client.dart';
 import 'package:water_controller_client_flutter/models/list_data_module.dart';
 
 class ApiService {
-  static const String _baseUrl = 'http://192.168.100.152/water-controller/api';
+  static const String _baseUrl = 'http://192.168.1.8/water-controller/api';
   static const String _getListDataClient = '/client/';
   static const String _getListDataModule = '/module/';
 

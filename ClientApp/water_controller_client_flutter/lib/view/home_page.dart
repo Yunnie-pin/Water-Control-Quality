@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:water_controller_client_flutter/provider/show_data_module_provider.dart';
 
 import '../utility/result_state.dart';
+import '../widget/home_page_loading_state.dart';
 
 class HomeViews extends StatelessWidget {
   static const routeName = '/home';
@@ -10,30 +11,30 @@ class HomeViews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            const Text('Water Controller'),
-            IconButton(
-              icon: const Icon(
-                Icons.bookmark,
-                size: 30.0,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/favorite');
-              },
+    return Consumer<ShowDataModuleProvider>(builder: (context, state, _) {
+      if (state.state == ResultState.loading) {
+        return homePageLoadingPage(context);
+      } else if (state.state == ResultState.hasData) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                const Text('Water Controller'),
+                IconButton(
+                  icon: const Icon(
+                    Icons.bookmark,
+                    size: 30.0,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/favorite');
+                  },
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-      body: Consumer<ShowDataModuleProvider>(builder: (context, state, _) {
-        if (state.state == ResultState.loading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state.state == ResultState.hasData) {
-          return Column(
+          ),
+          body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -163,32 +164,41 @@ class HomeViews extends StatelessWidget {
                     )),
               ),
             ],
-          );
-        } else if (state.state == ResultState.noData) {
-          return Center(
-            child: Material(
-              child: Text(state.message),
-            ),
-          );
-        } else if (state.state == ResultState.error) {
-          return Center(
-            child: Material(
-              child: Text(state.message),
-            ),
-          );
-        } else {
-          return const Center(
-            child: Material(
-              child: Text(''),
-            ),
-          );
-        }
-      }),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/add');
-          },
-          child: const Icon(Icons.add)),
-    );
+          ),
+          floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  '/add',
+                  arguments:
+                      [
+                      state.list.data[(state.list.data.length) - 1].value, 
+                      state.conditionalFunction(
+                        state.list.data[(state.list.data.length) - 1].value)
+                      ],
+                );
+              },
+              child: const Icon(Icons.add)),
+        );
+      } else if (state.state == ResultState.noData) {
+        return Center(
+          child: Material(
+            child: Text(state.message),
+          ),
+        );
+      } else if (state.state == ResultState.error) {
+        return Center(
+          child: Material(
+            child: Text(state.message),
+          ),
+        );
+      } else {
+        return const Center(
+          child: Material(
+            child: Text(''),
+          ),
+        );
+      }
+    });
   }
 }

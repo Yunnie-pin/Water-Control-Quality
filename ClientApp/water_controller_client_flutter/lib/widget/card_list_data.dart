@@ -7,7 +7,7 @@ import 'package:water_controller_client_flutter/provider/delete_client_provider.
 import '../api/api_client.dart';
 import '../models/list_data_client.dart';
 
-Padding cardListDataClient(Datum data, BuildContext context) {
+Widget cardListDataClient(Datum data, BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: ExpansionTile(
