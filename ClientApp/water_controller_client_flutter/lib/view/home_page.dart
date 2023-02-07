@@ -170,8 +170,9 @@ class HomeViews extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/add',
                     arguments: AddDefaultClient(
-                        sensor1: int.parse(state
-                            .list.data[(state.list.data.length) - 1].value),
+                        id: state.list.data.length,
+                        sensor1:
+                            state.list.data[(state.list.data.length) - 1].value,
                         hasil: state.conditionalFunction(state
                             .list.data[(state.list.data.length) - 1].value)));
               },
