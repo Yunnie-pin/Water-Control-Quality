@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:water_controller_client_flutter/models/add_default_client.dart';
 import 'package:water_controller_client_flutter/provider/show_data_module_provider.dart';
 
 import '../utility/result_state.dart';
@@ -167,16 +168,12 @@ class HomeViews extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
               onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  '/add',
-                  arguments:
-                      [
-                      state.list.data[(state.list.data.length) - 1].value, 
-                      state.conditionalFunction(
-                        state.list.data[(state.list.data.length) - 1].value)
-                      ],
-                );
+                Navigator.pushNamed(context, '/add',
+                    arguments: AddDefaultClient(
+                        sensor1: int.parse(state
+                            .list.data[(state.list.data.length) - 1].value),
+                        hasil: state.conditionalFunction(state
+                            .list.data[(state.list.data.length) - 1].value)));
               },
               child: const Icon(Icons.add)),
         );

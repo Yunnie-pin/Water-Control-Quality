@@ -4,29 +4,26 @@
 
 import 'dart:convert';
 
-AddDefaultClient addDefaultClientFromJson(String str) =>
-    AddDefaultClient.fromJson(json.decode(str));
+AddDefaultClient addDefaultClientFromJson(String str) => AddDefaultClient.fromJson(json.decode(str));
 
-String addDefaultClientToJson(AddDefaultClient data) =>
-    json.encode(data.toJson());
+String addDefaultClientToJson(AddDefaultClient data) => json.encode(data.toJson());
 
 class AddDefaultClient {
-  AddDefaultClient({
-    required this.cobasd,
-    required this.hasil,
-  });
+    AddDefaultClient({
+        required this.sensor1,
+        required this.hasil,
+    });
 
-  final int cobasd;
-  final String hasil;
+    final int sensor1;
+    final String hasil;
 
-  factory AddDefaultClient.fromJson(Map<String, dynamic> json) =>
-      AddDefaultClient(
-        cobasd: json["cobasd"],
+    factory AddDefaultClient.fromJson(Map<String, dynamic> json) => AddDefaultClient(
+        sensor1: json["sensor1"],
         hasil: json["hasil"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
-        "cobasd": cobasd,
+    Map<String, dynamic> toJson() => {
+        "sensor1": sensor1,
         "hasil": hasil,
-      };
+    };
 }
