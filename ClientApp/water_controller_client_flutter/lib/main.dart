@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:water_controller_client_flutter/api/api_client.dart';
+import 'package:water_controller_client_flutter/models/add_default_client.dart';
 import 'package:water_controller_client_flutter/provider/delete_client_provider.dart';
 import 'package:water_controller_client_flutter/provider/list_data_client_provider.dart';
 import 'package:water_controller_client_flutter/provider/show_data_module_provider.dart';
@@ -43,8 +44,7 @@ class MyApp extends StatelessWidget {
           '/home': (context) => const HomeViews(),
           '/favorite': (context) => const SavedPages(),
           '/add': (context) => AddDataPages(
-                dataSensor:
-                    ModalRoute.of(context)?.settings.arguments as String,
+                data: ModalRoute.of(context)?.settings.arguments as AddDefaultClient,
               ),
         },
       ),

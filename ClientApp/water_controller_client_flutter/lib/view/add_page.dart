@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:water_controller_client_flutter/models/add_default_client.dart';
 
 class AddDataPages extends StatefulWidget {
-  final String dataSensor;
+  final AddDefaultClient data;
 
-  const AddDataPages({super.key, required this.dataSensor});
+  const AddDataPages({super.key, required this.data});
 
   @override
   State<AddDataPages> createState() => _AddDataPagesState();
